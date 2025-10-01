@@ -16,7 +16,28 @@
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css" />
+  <script>
+// Logout button
+document.addEventListener("DOMContentLoaded", () => {
+  const logoutBtn = document.getElementById("logoutBtn");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", function(e) {
+      e.preventDefault();
+      localStorage.removeItem("loggedInUser"); // tanggalin session
+      window.location.href = "login.html"; // redirect sa login page
+    });
+  }
+
+  // ✅ Redirect to login kung walang naka-login
+  const user = localStorage.getItem("loggedInUser");
+  if (!user) {
+    window.location.href = "login.html";
+  }
+});
+</script>
+
 <style>
+  
 body {
   scroll-behavior: smooth;
   font-family: 'Poppins', sans-serif;
@@ -301,12 +322,17 @@ section {
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#about">About Me</a></li>
-          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        </ul>
+  <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+  <li class="nav-item"><a class="nav-link" href="#about">About Me</a></li>
+  <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+  <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+  <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+
+  <!-- 🔹 Added Logout -->
+  <li class="nav-item">
+    <a class="nav-link text-danger fw-bold" href="#" id="logoutBtn">Logout</a>
+  </li>
+</ul>
       </div>
     </div>
   </nav>
